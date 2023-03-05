@@ -2,7 +2,7 @@ import Models from "../database/models";
 const {users}=Models;
 import bcrypt from "bcrypt";
 import {v4 as uuidv4 } from 'uuid';
-
+import {encode, decode} from "../helper/jwtTokenize"
 class authController{
     static async creatAccount(req, res){
         try {
@@ -61,12 +61,26 @@ class authController{
             else{
                 const dbEmail = req.user.email
                 const dbPassword = req.user.password
+                const dbRole= req.user.role
                 const decreptedPassword = await bcrypt.compare(password, dbPassword)
                 if(dbEmail == email){
                     if(decreptedPassword){
+                        const token=await encode({
+                            email,
+                            dbRole
+                        });
+
+                        const decodeToken = await decode(token);
+                        const role = decodeToken.dbRole
+                        const emailfromtoken =decodeToken.email
                         return res.status(200).json({
                             stastus: 200,
                             message: "Login succefull", 
+                            data:{
+                                role,
+                                emailfromtoken,
+                                token
+                            }
                         })
                     }else{
                         res.status(400).json({
