@@ -44,6 +44,51 @@ class authController{
             
         }
     }
+
+    
+    static async Login(req, res){
+        try {
+            const {email,password}=req.body
+            const findUser = await users.findOne({
+                where: {email:email}
+            })
+            if(!req.user){
+                res.status(404).json({
+                    status: 404,
+                    message:"Account don't exit"
+                })
+            }
+            else{
+                const dbEmail = req.user.email
+                const dbPassword = req.user.password
+                const decreptedPassword = await bcrypt.compare(password, dbPassword)
+                if(dbEmail == email){
+                    if(decreptedPassword){
+                        return res.status(200).json({
+                            stastus: 200,
+                            message: "Login succefull", 
+                        })
+                    }else{
+                        res.status(400).json({
+                            stastus: 400,
+                            message:"Wrong Password"
+                        })
+                    }
+                }else{
+                    res.status(400).json({
+                        stastus: 400,
+                        message:"Wrong Email"
+                    })
+                }
+            }
+            
+        } catch (error) {
+            res.status(500).json({
+                stastus: 500,
+                message:"server problem" +error.message
+            })
+        }
+    }
 }
 
 export default authController
