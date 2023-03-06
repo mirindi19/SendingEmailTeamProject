@@ -8,9 +8,6 @@
     "dev": "nodemon -L --exec babel-node src/index.js"
   },
   "author": "Team Project",
-<<<<<<< Updated upstream
-  "license": "ISC"
-=======
   "license": "ISC",
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
@@ -35,7 +32,7 @@
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.20.2",
     "@babel/register": "^7.21.0",
+    "jsonwebtoken": "^9.0.0",
     "nodemon": "^2.0.21"
   }
->>>>>>> Stashed changes
 }
