@@ -7,10 +7,5 @@ const router =Router();
 
 router.use("/auth",authRouter);
 router.post('/email/send',sendEmail)
- //let b = [
-//     body('sender').isEmail().normalizeEmail(),
-//     body('receiver').isEmail().normalizeEmail(),
-//     body('subject').not().isEmpty().trim().escape(),
-//     body('text').not().isEmpty().trim().escape()
-//   ] 
-  export default router
+
+export default router;
