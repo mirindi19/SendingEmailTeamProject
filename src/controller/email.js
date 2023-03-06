@@ -18,7 +18,11 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
               const msgId =uuidv4();
               const msg = {
                 ID : msgId,
+<<<<<<< Updated upstream
                 to: 'ishteachy@gmail.com', // Change to your recipient
+=======
+                to: ['ishteachy@gmail.com','mirindisaidi19@gmail.com','gemini.pacella@gmail.com'], // Change to your recipient
+>>>>>>> Stashed changes
                 from: 'ishimwe96@gmail.com', // Change to your verified sender
                 subject: 'test sendgrid',
                 text: 'email test',
@@ -29,7 +33,11 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
                 .then(() => {
                     const query = {
                     text: 'INSERT INTO emails(ID, sender, receiver, subject, text) VALUES($1, $2, $3, $4, $5)',
+<<<<<<< Updated upstream
                     values: [msg.ID, msg.from, msg.to, msg.subject, msg.text],
+=======
+                    values: [msg.ID, msg.from, msg.to.join(''), msg.subject, msg.text],
+>>>>>>> Stashed changes
                     };
 
                 pool.query(query);
