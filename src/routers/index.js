@@ -12,5 +12,3 @@ router.post('/email/send',[
     body('subject').not().isEmpty().trim().escape(),
     body('text').not().isEmpty().trim().escape()
   ] ,sendEmail)
-
-export default router
