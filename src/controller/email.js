@@ -7,6 +7,16 @@ const { body, validationResult } = require('express-validator');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
      async function sendEmail(req, res){
+         const msgId =uuidv4();
+         const msg = {
+           ID : msgId,
+          // to : 'ishteachy@gmail.com',
+           to: ['ishteachy@gmail.com','mirindisaidi19@gmail.com','ishimwe96@gmail.com'], // Change to your recipient
+           from: 'gemini.pacella@gmail.com', // Change to your verified sender
+           subject: 'test sendgrid',
+           text:'req.body.subject',
+           //html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+         }
         try {
             const pool = new Pool({
                 user: process.env.POSTGRES_USER,
@@ -15,15 +25,6 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
                 password: process.env.POSTGRES_PASSWORD,
                 port: process.env.POSTGRES_PORT
               });
-              const msgId =uuidv4();
-              const msg = {
-                ID : msgId,
-                to: ['ishteachy@gmail.com','mirindisaidi19@gmail.com','gemini.pacella@gmail.com'], // Change to your recipient
-                from: 'ishimwe96@gmail.com', // Change to your verified sender
-                subject: 'test sendgrid',
-                text: 'email test',
-                //html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-              }
               await sgMail
                 .send(msg)
                 .then(() => {
