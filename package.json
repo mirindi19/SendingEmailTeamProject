@@ -8,16 +8,21 @@
     "dev": "nodemon -L --exec babel-node src/index.js"
   },
   "author": "Team Project",
+<<<<<<< Updated upstream
+  "license": "ISC"
+=======
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.0",
+    "express-validator": "^6.15.0",
     "pg": "^8.9.0",
     "pg-hstore": "^2.3.4",
+    "sendgrid": "^5.2.3",
     "sequelize": "^6.29.0",
     "sequelize-cli": "^6.6.0",
     "uuidv4": "^6.2.13"
@@ -32,4 +37,5 @@
     "@babel/register": "^7.21.0",
     "nodemon": "^2.0.21"
   }
+>>>>>>> Stashed changes
 }
