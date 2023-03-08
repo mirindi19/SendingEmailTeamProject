@@ -1,7 +1,7 @@
 const express = require('express');
 const passport = require('./config/passport');
 const { Sequelize, DataTypes } = require('sequelize')
-const sequelize = new Sequelize(require('./config/database')['development'])
+const sequelize = new Sequelize(require('./db/config/config')['development'])
 const authRoutes = require('./routes/auth');
 const emailRoutes = require('./routes/emails');
 

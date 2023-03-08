@@ -1,13 +1,23 @@
 const { Sequelize, DataTypes } = require('sequelize')
-const sequelize = new Sequelize(require('../config/database')['development'])
+const sequelize = new Sequelize(require('../config/config')['development'])
 
 
 const Email = sequelize.define('emails', {
-  to: {
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: Sequelize.literal('NOW()'),
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: false,
+    defaultValue: Sequelize.literal('NOW()'),
+  },
+  receivers: {
     type: DataTypes.ARRAY(DataTypes.STRING),
     allowNull: false,
   },
-  from: {
+  sender: {
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -15,8 +25,8 @@ const Email = sequelize.define('emails', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  body: {
-    type: DataTypes.TEXT,
+  text: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
   sent: {
